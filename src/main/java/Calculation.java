@@ -25,12 +25,37 @@ public class Calculation {
     public void calculateExpensePerUser(List<User> users, List<Product> products){
         for (Product product:products){
             for (User user:users) {
-                if(user.getUserDoesNotEatThis().contains(product)){
-
+                if(!user.getUserDoesNotEatThis().contains(product)){
+                    user.setPartialContribution(user.getPartialContribution()+product.getPartialPrice());
                 };
             }
 
         }
+    }
+
+    public void defineReceiverAndReturner(List<User> users){
+
+            for (User user:users) {
+
+                Double partialContribution = user.getPartialContribution();
+                if(user.getUserBought() == null){
+                    System.out.println(user.getName() + " has to PAY " + (partialContribution));
+                    continue;
+                }
+
+                Double priceOfDeliveredProduct = user.getUserBought().getPrice();
+
+                if(priceOfDeliveredProduct > partialContribution){
+                    System.out.println(user.getName() + " has to RECEIVE " + (priceOfDeliveredProduct - partialContribution));
+                } else if (partialContribution > priceOfDeliveredProduct){
+                    System.out.println(user.getName() + " has to PAY " + (partialContribution - priceOfDeliveredProduct));
+                } else if (partialContribution == priceOfDeliveredProduct){
+                    System.out.println(user.getName() + " has to NEITHER receive NOR pay");
+                }
+            };
+
+
+
     }
 
 

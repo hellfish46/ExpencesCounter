@@ -14,8 +14,8 @@ public class Main {
         users.add(anton);
 
         Product meat = new Product("Meat", 320.00);
-        Product garnish = new Product("Garnish", 160.00);
-        Product drink = new Product("Drink", 400.00);
+        Product garnish = new Product("Garnish", 60.00);
+        Product drink = new Product("Drink", 220.00);
 
         artyom.setUserBought(meat);
         pavel.setUserBought(garnish);
@@ -34,11 +34,15 @@ public class Main {
         Calculation calculation = new Calculation();
         calculation.findPartialCostOfEachProduct(users, products);
 
-        System.out.println(meat.getPartialPrice());
-        System.out.println(garnish.getPartialPrice());
-        System.out.println(drink.getPartialPrice());
+//        System.out.println(meat.getPartialPrice());
+//        System.out.println(garnish.getPartialPrice());
+//        System.out.println(drink.getPartialPrice());
 
 
+
+        calculation.calculateExpensePerUser(users,products);
+
+        calculation.defineReceiverAndReturner(users);
 
 
 

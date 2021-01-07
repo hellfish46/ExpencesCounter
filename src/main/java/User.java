@@ -17,6 +17,19 @@ public class User {
     private double userMustGiveMoney;
     private double userMustReceiveMoney;
     private List<Product> userDoesNotEatThis = new ArrayList<Product>();
+    private double partialContribution = 0.0;
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPartialContribution() {
+        return partialContribution;
+    }
+
+    public void setPartialContribution(double partialContribution) {
+        this.partialContribution = partialContribution;
+    }
 
     public Product getUserBought() {
         return userBought;
