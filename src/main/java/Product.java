@@ -8,6 +8,15 @@ public class Product {
     private String name;
     private double price;
     private double partialPrice;
+    private int divider = 0; //Count of users who eats this
+
+    public int getDivider() {
+        return divider;
+    }
+
+    public void setDivider(int divider) {
+        this.divider = divider;
+    }
 
     public double getPartialPrice() {
         return partialPrice;

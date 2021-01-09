@@ -18,10 +18,21 @@ public class User {
     private double userMustReceiveMoney;
     private List<Product> userDoesNotEatThis = new ArrayList<Product>();
     private double partialContribution = 0.0;
+    private User couple;
+
+    public User getCouple() {
+        return couple;
+    }
+
+    public void setCouple(User couple) {
+        this.couple = couple;
+    }
 
     public String getName() {
         return name;
     }
+
+
 
     public double getPartialContribution() {
         return partialContribution;

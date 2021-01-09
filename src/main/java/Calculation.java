@@ -7,20 +7,66 @@ public class Calculation {
         //Product product:products
         for (Product product:products){
             //product1
-            int divider = users.size();
-            for (User user:users) {
-                if(user.getUserDoesNotEatThis().contains(product)){
-                    divider = divider - 1;
-                };
-            }
-            //Math.round(product.getPrice()/divider*10)
 
-            double i = product.getPrice()/divider*10;
+
+            double i = product.getPrice()/product.getDivider()*10;
             double z = Math.round(i);
             double x = z/10;
             product.setPartialPrice(x);
         }
     }
+
+
+    public void defineDividerPerProduct(List<User> users, List<Product> products){
+        for (Product product:products){
+            //product1
+            //int divider = users.size();
+
+            for (User user:users) {
+                User couple = user.getCouple();
+
+                if(!user.getUserDoesNotEatThis().contains(product)){
+                    product.setDivider(product.getDivider()+1);
+                }
+                if(couple!=null){
+                    if(!couple.getUserDoesNotEatThis().contains(product)){
+                        product.setDivider(product.getDivider()+1);
+                    }
+                }
+
+                };
+            }
+    }
+
+    public void defineHowMuchMoneyUserHaveToReceiveBack(List<User> users){
+        for(User user:users){
+            Product boughtProduct = user.getUserBought();
+            User couple = user.getCouple();
+            if(boughtProduct != null){
+                double userMustReceiveMoney = user.getUserBought().getPrice();
+                if(!user.getUserDoesNotEatThis().contains(boughtProduct)){
+                    userMustReceiveMoney = userMustReceiveMoney-boughtProduct.getPartialPrice();
+                }
+                if(couple != null){
+                    if(!couple.getUserDoesNotEatThis().contains(boughtProduct)){
+                        userMustReceiveMoney = userMustReceiveMoney-boughtProduct.getPartialPrice();
+                    }
+                }
+                user.setUserMustReceiveMoney(userMustReceiveMoney);
+
+            }
+
+            System.out.println(user.getName()+ " receives " + user.getUserMustReceiveMoney());
+
+
+
+
+        }
+    }
+
+
+
+
 
     public void calculateExpensePerUser(List<User> users, List<Product> products){
         for (Product product:products){
