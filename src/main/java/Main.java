@@ -21,8 +21,8 @@ public class Main {
         users.add(anton);
 
 
-        Product pizza = new Product("Pizza", 417.00);
-        Product juice = new Product("Juice", 110.00);
+        Product pizza = new Product("Pizza", 417.00, artyom);
+        Product juice = new Product("Juice", 110.00, alex);
        // Product drink = new Product("Drink", 220.00);
 
         artyom.setUserBought(pizza);

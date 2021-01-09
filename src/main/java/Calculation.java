@@ -64,6 +64,46 @@ public class Calculation {
         }
     }
 
+    public void x (List<User> users, List<Product> products){
+        for (Product product:products){
+            for (User user:users) {
+                double moneyToPay = 0.0;
+                if(!user.equals(product.getOwner())){
+                    if(!user.getUserDoesNotEatThis().contains(product)){
+                        moneyToPay = moneyToPay+product.getPartialPrice();
+                    }
+                    if(user.getCouple()!=null){
+                        if(!user.getCouple().getUserDoesNotEatThis().contains(product)){
+                            moneyToPay=moneyToPay+product.getPartialPrice();
+                        }
+                    }
+                    System.out.println(user.getName() + " has to PAY to " + product.getOwner().getName() + " " + moneyToPay);
+                    if(user.getUserBought()!=null){
+                        Product userBought = user.getUserBought();
+                        if(!product.getOwner().getUserDoesNotEatThis().contains(userBought)){
+                            moneyToPay=moneyToPay-userBought.getPartialPrice();
+                        }
+                        if(product.getOwner().getCouple()!=null) {
+                            if (!product.getOwner().getCouple().getUserDoesNotEatThis().contains(userBought)) {
+                                moneyToPay = moneyToPay - userBought.getPartialPrice();
+                            }
+                        }
+                    }
+                }
+                if(moneyToPay>0.0){
+                    System.out.println(user.getName() + " has to PAY to " + product.getOwner().getName() + " " + moneyToPay);
+                } else if (moneyToPay<0.0){
+                    System.out.println(product.getOwner().getName() + " has to PAY to " + user.getName() + " " + Math.abs(moneyToPay));
+                }
+
+
+
+            }
+
+        }
+    }
+
+
 
 
 

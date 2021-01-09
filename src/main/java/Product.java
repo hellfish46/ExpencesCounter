@@ -1,14 +1,24 @@
 public class Product {
 
-    public Product(String name, double price) {
+    public Product(String name, double price, User owner) {
         this.name = name;
         this.price = price;
+        this.owner = owner;
     }
 
     private String name;
     private double price;
     private double partialPrice;
     private int divider = 0; //Count of users who eats this
+    private User owner;
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
     public int getDivider() {
         return divider;
