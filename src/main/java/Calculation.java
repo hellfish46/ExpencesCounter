@@ -64,7 +64,7 @@ public class Calculation {
         }
     }
 
-    public void x (List<User> users, List<Product> products){
+    public void calculateWhoMustPayToWhom (List<User> users, List<Product> products){
         for (Product product:products){
             for (User user:users) {
                 double moneyToPay = 0.0;
@@ -77,7 +77,7 @@ public class Calculation {
                             moneyToPay=moneyToPay+product.getPartialPrice();
                         }
                     }
-                    System.out.println(user.getName() + " has to PAY to " + product.getOwner().getName() + " " + moneyToPay);
+                    //System.out.println(user.getName() + " has to PAY to " + product.getOwner().getName() + " " + moneyToPay);
                     if(user.getUserBought()!=null){
                         Product userBought = user.getUserBought();
                         if(!product.getOwner().getUserDoesNotEatThis().contains(userBought)){
@@ -92,9 +92,10 @@ public class Calculation {
                 }
                 if(moneyToPay>0.0){
                     System.out.println(user.getName() + " has to PAY to " + product.getOwner().getName() + " " + moneyToPay);
-                } else if (moneyToPay<0.0){
-                    System.out.println(product.getOwner().getName() + " has to PAY to " + user.getName() + " " + Math.abs(moneyToPay));
                 }
+//                else if (moneyToPay<0.0){
+//                    System.out.println(product.getOwner().getName() + " has to PAY to " + user.getName() + " " + Math.abs(moneyToPay));
+//                }
 
 
 
@@ -102,49 +103,6 @@ public class Calculation {
 
         }
     }
-
-
-
-
-
-
-    public void calculateExpensePerUser(List<User> users, List<Product> products){
-        for (Product product:products){
-            for (User user:users) {
-                if(!user.getUserDoesNotEatThis().contains(product)){
-                    user.setPartialContribution(user.getPartialContribution()+product.getPartialPrice());
-                };
-            }
-
-        }
-    }
-
-    public void defineReceiverAndReturner(List<User> users){
-
-            for (User user:users) {
-
-                Double partialContribution = user.getPartialContribution();
-                if(user.getUserBought() == null){
-                    System.out.println(user.getName() + " has to PAY " + (partialContribution));
-                    continue;
-                }
-
-                Double priceOfDeliveredProduct = user.getUserBought().getPrice();
-
-                if(priceOfDeliveredProduct > partialContribution){
-                    System.out.println(user.getName() + " has to RECEIVE " + (priceOfDeliveredProduct - partialContribution));
-                } else if (partialContribution > priceOfDeliveredProduct){
-                    System.out.println(user.getName() + " has to PAY " + (partialContribution - priceOfDeliveredProduct));
-                } else if (partialContribution == priceOfDeliveredProduct){
-                    System.out.println(user.getName() + " has to NEITHER receive NOR pay");
-                }
-            };
-
-
-
-    }
-
-
 
 
 
